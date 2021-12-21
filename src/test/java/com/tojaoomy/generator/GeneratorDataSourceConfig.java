@@ -1,3 +1,5 @@
+package com.tojaoomy.generator;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

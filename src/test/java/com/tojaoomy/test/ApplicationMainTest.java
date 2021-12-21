@@ -1,3 +1,5 @@
+package com.tojaoomy.test;
+
 import com.alibaba.fastjson.JSON;
 import com.github.jsonzou.jmockdata.MockConfig;
 import com.tojaoomy.payment.app.MainApplication;
@@ -20,7 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { TestDataSourceConfig.class, MainApplication.class })
+@ContextConfiguration(classes = { TestDataSourceConfig.class, TestMybatisPlusConfiguration.class, MainApplication.class })
 public class ApplicationMainTest {
 
     private static MockConfig mockConfig = new MockConfig()
