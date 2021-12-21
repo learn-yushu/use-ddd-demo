@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tojaoomy.payment.mapper.OrderComplaintItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.tojaoomy.payment.dataobject.OrderComplaintItemDO">
+        <id column="id" property="id" />
+        <result column="ctime" property="ctime" />
+        <result column="mtime" property="mtime" />
+        <result column="deleted" property="deleted" />
+        <result column="game_id" property="gameId" />
+        <result column="game_base_id" property="gameBaseId" />
+        <result column="game_name" property="gameName" />
+        <result column="game_zone" property="gameZone" />
+        <result column="user_id" property="userId" />
+        <result column="user_game_nickname" property="userGameNickname" />
+        <result column="user_contract" property="userContract" />
+        <result column="order_amount" property="orderAmount" />
+        <result column="pay_amount" property="payAmount" />
+        <result column="order_time" property="orderTime" />
+        <result column="pay_order_id" property="payOrderId" />
+        <result column="pay_order_tx_id" property="payOrderTxId" />
+        <result column="channel_order_id" property="channelOrderId" />
+        <result column="cp_order_id" property="cpOrderId" />
+        <result column="operator" property="operator" />
+        <result column="operate_time" property="operateTime" />
+        <result column="deal_status" property="dealStatus" />
+        <result column="deal_result" property="dealResult" />
+        <result column="operator_comment" property="operatorComment" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, ctime, mtime, deleted, game_id, game_base_id, game_name, game_zone, user_id, user_game_nickname, user_contract, order_amount, pay_amount, order_time, pay_order_id, pay_order_tx_id, channel_order_id, cp_order_id, operator, operate_time, deal_status, deal_result, operator_comment, remark
+    </sql>
+
+</mapper>

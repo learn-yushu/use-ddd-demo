@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 支付订单补单工作流映射表
+ * 支付订单补单工作流
  * </p>
  *
  * @author 松梁
@@ -24,8 +24,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("t_order_complaint_flow_mapping")
-public class OrderComplaintFlowMappingDO extends Model<OrderComplaintFlowMappingDO> {
+@TableName("t_order_complaint_flow")
+public class OrderComplaintFlowDO extends Model<OrderComplaintFlowDO> {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,25 +55,43 @@ public class OrderComplaintFlowMappingDO extends Model<OrderComplaintFlowMapping
     private Integer deleted;
 
     /**
-     * 工作流id
+     * 游戏基础id
      */
-    @TableField("flow_id")
-    private Long flowId;
+    @TableField("game_base_id")
+    private Long gameBaseId;
 
     /**
-     * 工作流明细id
+     * 游戏名称
      */
-    @TableField("flow_detail_id")
-    private Long flowDetailId;
+    @TableField("game_name")
+    private String gameName;
 
     /**
-     * 是否开启工作流
+     * 发起人
      */
-    @TableField("is_active_flow")
-    private Integer isActiveFlow;
+    @TableField("actor")
+    private String actor;
 
     /**
-     * 工作流状态;init-初始化,processing-处理中, approved-已审批
+     * 当前处理人
+     */
+    @TableField("processor")
+    private String processor;
+
+    /**
+     * 工作流处理id
+     */
+    @TableField("process_id")
+    private String processId;
+
+    /**
+     * 处理时间
+     */
+    @TableField("process_time")
+    private LocalDateTime processTime;
+
+    /**
+     * 处理状态
      */
     @TableField("flow_status")
     private String flowStatus;

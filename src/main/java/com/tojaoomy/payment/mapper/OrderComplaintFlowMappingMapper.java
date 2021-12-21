@@ -1,8 +1,8 @@
 package com.tojaoomy.payment.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tojaoomy.payment.dataobject.OrderComplaintFlowMappingDO;
-import org.springframework.stereotype.Repository;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
  * </p>
  *
  * @author 松梁
- * @since 2021-12-20
+ * @since 2021-12-21
  */
-@Repository
+@Mapper
 public interface OrderComplaintFlowMappingMapper extends BaseMapper<OrderComplaintFlowMappingDO> {
 
 }

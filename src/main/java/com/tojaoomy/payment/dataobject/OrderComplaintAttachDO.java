@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 支付订单补单工作流映射表
+ * 支付订单补单附件
  * </p>
  *
  * @author 松梁
@@ -24,8 +24,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("t_order_complaint_flow_mapping")
-public class OrderComplaintFlowMappingDO extends Model<OrderComplaintFlowMappingDO> {
+@TableName("t_order_complaint_attach")
+public class OrderComplaintAttachDO extends Model<OrderComplaintAttachDO> {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,28 +55,28 @@ public class OrderComplaintFlowMappingDO extends Model<OrderComplaintFlowMapping
     private Integer deleted;
 
     /**
-     * 工作流id
+     * 补单id
      */
-    @TableField("flow_id")
-    private Long flowId;
+    @TableField("complaint_item_id")
+    private Long complaintItemId;
 
     /**
-     * 工作流明细id
+     * 附件名称
      */
-    @TableField("flow_detail_id")
-    private Long flowDetailId;
+    @TableField("attach_name")
+    private String attachName;
 
     /**
-     * 是否开启工作流
+     * 附件URL
      */
-    @TableField("is_active_flow")
-    private Integer isActiveFlow;
+    @TableField("attach_urls")
+    private String attachUrls;
 
     /**
-     * 工作流状态;init-初始化,processing-处理中, approved-已审批
+     * cos存储路径
      */
-    @TableField("flow_status")
-    private String flowStatus;
+    @TableField("cos_path")
+    private String cosPath;
 
 
     @Override

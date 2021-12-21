@@ -1,11 +1,15 @@
 package com.tojaoomy.payment.app;
 
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.LocalDateTypeHandler;
+import org.apache.ibatis.type.LocalTimeTypeHandler;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +26,9 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,10 +38,10 @@ import java.util.List;
  * @date 2021/9/2
  */
 @Slf4j
-@Configuration("paymentMybatisConfiguration")
+@Configuration("mybatisPlusConfiguration")
 @MapperScan(basePackages = {"com.tojaoomy.payment.mapper"})
 @PropertySource(value = {"classpath:config/shardingsphere.properties", "file:${CONF_PATH}/shardingsphere.properties"}, ignoreResourceNotFound = true)
-public class PaymentMybatisPLusConfiguration {
+public class MybatisPlusConfiguration {
 
     @Value("${spring.profiles.active}")
     private String env;
@@ -47,11 +54,16 @@ public class PaymentMybatisPLusConfiguration {
         Resource[] resources = this.resolveMapperLocations();
         bean.setMapperLocations(resources);
         MybatisConfiguration configuration = new MybatisConfiguration();
+        configuration.getTypeHandlerRegistry().register(LocalDateTime.class, new LocalDateTimeTypeHandler());
+        configuration.getTypeHandlerRegistry().register(LocalDate.class, new LocalDateTypeHandler());
+        configuration.getTypeHandlerRegistry().register(LocalTime.class, new LocalTimeTypeHandler());
         configuration.setMapUnderscoreToCamelCase(true);
         //本地开发打印SQL
         if ("LOCAL".equalsIgnoreCase(env)) {
             configuration.setLogImpl(StdOutImpl.class);
         }
+        GlobalConfig globalConfig = GlobalConfigUtils.getGlobalConfig(configuration);
+        globalConfig.setMetaObjectHandler(new MyMetaObjectHandler());
         bean.setConfiguration(configuration);
         return bean.getObject();
     }
