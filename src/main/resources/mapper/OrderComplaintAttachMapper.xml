@@ -9,14 +9,15 @@
         <result column="mtime" property="mtime" />
         <result column="deleted" property="deleted" />
         <result column="complaint_item_id" property="complaintItemId" />
+        <result column="md5" property="md5" />
         <result column="attach_name" property="attachName" />
-        <result column="attach_urls" property="attachUrls" />
+        <result column="attach_url" property="attachUrl" />
         <result column="cos_path" property="cosPath" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, ctime, mtime, deleted, complaint_item_id, attach_name, attach_urls, cos_path
+        id, ctime, mtime, deleted, complaint_item_id, md5, attach_name, attach_url, cos_path
     </sql>
 
 </mapper>

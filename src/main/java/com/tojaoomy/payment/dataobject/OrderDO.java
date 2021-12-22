@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 支付订单补单附件
+ * 支付订单补单工作流映射表
  * </p>
  *
  * @author 玉书
@@ -24,8 +25,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("t_order_complaint_attach")
-public class OrderComplaintAttachDO extends Model<OrderComplaintAttachDO> {
+@TableName("t_order")
+public class OrderDO extends Model<OrderDO> {
 
     private static final long serialVersionUID = 1L;
 
@@ -54,35 +55,15 @@ public class OrderComplaintAttachDO extends Model<OrderComplaintAttachDO> {
     @TableLogic
     private Integer deleted;
 
-    /**
-     * 补单id
-     */
-    @TableField("complaint_item_id")
-    private Long complaintItemId;
+    @TableField("order_id")
+    private String orderId;
 
     /**
-     * 文件md5
+     * 是否开启工作流
      */
-    @TableField("md5")
-    private String md5;
-
-    /**
-     * 附件名称
-     */
-    @TableField("attach_name")
-    private String attachName;
-
-    /**
-     * 附件URL
-     */
-    @TableField("attach_url")
-    private String attachUrl;
-
-    /**
-     * cos存储路径
-     */
-    @TableField("cos_path")
-    private String cosPath;
+    @TableField("version")
+    @Version
+    private Integer version;
 
 
     @Override

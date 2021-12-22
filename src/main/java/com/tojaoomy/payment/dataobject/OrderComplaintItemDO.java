@@ -19,8 +19,8 @@ import lombok.experimental.Accessors;
  * 支付订单补单工作流明细
  * </p>
  *
- * @author 松梁
- * @since 2021-12-21
+ * @author 玉书
+ * @since 2021-12-22
  */
 @Getter
 @Setter

@@ -24,7 +24,7 @@ import java.util.Collections;
 public class MybatisPlusCodeGenerator_ {
 
     public static GeneratorDataSourceConfig createComplaint() {
-        return GeneratorDataSourceConfigFactory.createCompliant().setTableNames(Arrays.asList(("t_order_complaint_flow_mapping,t_order_complaint_flow,t_order_complaint_item,t_order_complaint_attach").split(",")));
+        return GeneratorDataSourceConfigFactory.createCompliant().setTableNames(Arrays.asList(("t_order,t_order_complaint_flow_mapping,t_order_complaint_flow,t_order_complaint_item,t_order_complaint_attach").split(",")));
     }
 
     public static void main(String[] args) {
@@ -39,7 +39,7 @@ public class MybatisPlusCodeGenerator_ {
                         generatorDataSourceConfig.getPassword())
                         .typeConvert(new MySqlTypeConvertCustom()))
                 .globalConfig(builder -> {
-                    builder.author("松梁") // 设置作者
+                    builder.author("玉书") // 设置作者
                             .commentDate("yyyy-MM-dd")
 //                            .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
@@ -76,7 +76,8 @@ public class MybatisPlusCodeGenerator_ {
 
                             .logicDeleteColumnName("deleted")
                             .logicDeletePropertyName("deleted")
-
+                            .versionColumnName("version")
+                            .versionPropertyName("version")
                             .naming(NamingStrategy.underline_to_camel)
                             .columnNaming(NamingStrategy.underline_to_camel)
                             .enableChainModel()

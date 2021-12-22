@@ -4,16 +4,19 @@ import com.alibaba.fastjson.JSON;
 import com.github.jsonzou.jmockdata.MockConfig;
 import com.tojaoomy.payment.app.MainApplication;
 import com.tojaoomy.payment.dataobject.OrderComplaintFlowMappingDO;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.tojaoomy.payment.dataobject.OrderDO;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 /**
  * @author 玉书
@@ -21,15 +24,14 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @SpringBootTest
 @ActiveProfiles("test")
-@RunWith(SpringRunner.class)
+@Sql(scripts = "/h2_sql/delete.sql")
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { TestDataSourceConfig.class, TestMybatisPlusConfiguration.class, MainApplication.class })
 public class ApplicationMainTest {
 
     private static MockConfig mockConfig = new MockConfig()
             // 全局配置
             .globalConfig();
-
-
 
     @Test
     @Ignore
@@ -38,7 +40,21 @@ public class ApplicationMainTest {
     }
 
     @Test
-//    @Sql(statements = "insert into t_order_complaint_flow_mapping (id, deleted, flow_id, flow_detail_id, is_active_flow, flow_status) values  (1, 0, 0, 0, 0, 'init');")
+    @Sql(statements = "insert into t_order_complaint_flow_mapping (id, deleted, flow_id, flow_detail_id, is_active_flow, flow_status) values  (10, 0, 0, 0, 0, 'init');")
+    public void testSqlInsert() {
+
+    }
+
+    /**
+     * 测试乐观锁
+     */
+    @Test
+    public void testVersion() {
+        OrderDO orderDO = new OrderDO();
+        orderDO.selectById(1).setOrderId("1234").updateById();
+    }
+
+    @Test
     public void configMapper_selectByExample() {
         OrderComplaintFlowMappingDO orderComplaintFlowMappingDO = new OrderComplaintFlowMappingDO();
         printJSON(orderComplaintFlowMappingDO.selectAll());
@@ -54,12 +70,12 @@ public class ApplicationMainTest {
         System.out.println(JSON.toJSONString(object, true));
     }
 
-    @After
-    @Sql(scripts = "h2_sql/delete.sql")
+    @BeforeEach
     public void after() {
+        System.out.println("before !!!");
     }
 
-    @AfterClass
+    @AfterAll
     public static void afterClass() {
         System.out.println("after class");
     }

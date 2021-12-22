@@ -1,1 +1,1 @@
-delete  from t_order_complaint_flow_mapping;
+delete from t_order_complaint_flow_mapping;

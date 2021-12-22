@@ -1,6 +1,6 @@
 package com.tojaoomy.payment.mapper;
 
-import com.tojaoomy.payment.dataobject.OrderComplaintFlowMappingDO;
+import com.tojaoomy.payment.dataobject.OrderDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2021-12-22
  */
 @Mapper
-public interface OrderComplaintFlowMappingMapper extends BaseMapper<OrderComplaintFlowMappingDO> {
+public interface OrderMapper extends BaseMapper<OrderDO> {
 
 }
