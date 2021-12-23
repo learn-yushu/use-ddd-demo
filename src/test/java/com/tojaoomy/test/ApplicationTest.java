@@ -7,6 +7,8 @@ import com.tojaoomy.payment.dataobject.OrderComplaintFlowMappingDO;
 import com.tojaoomy.payment.dataobject.OrderDO;
 import com.tojaoomy.payment.dataobject.ShardingUserDO;
 import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,7 +65,7 @@ public class ApplicationTest {
     public void testSharding() {
         for (int i = 0; i < 100; i++) {
             ShardingUserDO shardingUserDO = new ShardingUserDO();
-            shardingUserDO.setUserId("123" + i);
+            shardingUserDO.setUserId("1" + RandomUtils.nextInt(0, 10) + RandomUtils.nextInt(0, 10) + i);
             shardingUserDO.insert();
         }
     }

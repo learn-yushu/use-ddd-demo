@@ -18,7 +18,7 @@ public class ShardingUserTableAlgorithm implements PreciseShardingAlgorithm<Stri
     public String doSharding(Collection<String> tableNames, PreciseShardingValue<String> shardingValue) {
         String userId = shardingValue.getValue();
         if(StringUtils.isNotBlank(userId) && userId.length() >= 4) {
-           return "sharding-user" + NumberUtils.toInt(String.valueOf(userId.charAt(3)),0) % 2;
+           return "t_sharding_user_" + NumberUtils.toInt(String.valueOf(userId.charAt(2)),0) % 2;
         }
         return DEFAULT_DATABASE_NAME;
     }
