@@ -5,6 +5,7 @@ import com.github.jsonzou.jmockdata.MockConfig;
 import com.tojaoomy.payment.app.MainApplication;
 import com.tojaoomy.payment.dataobject.OrderComplaintFlowMappingDO;
 import com.tojaoomy.payment.dataobject.OrderDO;
+import com.tojaoomy.payment.dataobject.ShardingUserDO;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,8 +27,8 @@ import java.util.List;
  * @date 2021/1/26
  */
 @SpringBootTest
-@ActiveProfiles("test")
-@Sql(scripts = "/h2_sql/delete.sql")
+//@ActiveProfiles("test")
+//@Sql(scripts = "/h2_sql/delete.sql")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { TestDataSourceConfig.class, TestMybatisPlusConfiguration.class })
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class }, scanBasePackages = {"com.tojaoomy.payment"})
@@ -56,6 +57,15 @@ public class ApplicationTest {
     public void testVersion() {
         OrderDO orderDO = new OrderDO();
         orderDO.selectById(1).setOrderId("1234").updateById();
+    }
+
+    @Test
+    public void testSharding() {
+        for (int i = 0; i < 100; i++) {
+            ShardingUserDO shardingUserDO = new ShardingUserDO();
+            shardingUserDO.setUserId("123" + i);
+            shardingUserDO.insert();
+        }
     }
 
     @Test

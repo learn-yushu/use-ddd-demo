@@ -24,7 +24,14 @@ import java.util.Collections;
 public class MybatisPlusCodeGenerator_ {
 
     public static GeneratorDataSourceConfig createComplaint() {
-        return GeneratorDataSourceConfigFactory.createCompliant().setTableNames(Arrays.asList(("t_order,t_order_complaint_flow_mapping,t_order_complaint_flow,t_order_complaint_item,t_order_complaint_attach").split(",")));
+        return GeneratorDataSourceConfigFactory.createCompliant().setTableNames(Arrays.asList(
+                "t_sharding_user"
+//                ,"t_order"
+//                ,"t_order_complaint_flow_mapping"
+//                ,"t_order_complaint_flow"
+//                ,"t_order_complaint_item"
+//                ,"t_order_complaint_attach"
+        ));
     }
 
     public static void main(String[] args) {
