@@ -2,13 +2,9 @@ package com.tojaoomy.test;
 
 import com.alibaba.fastjson.JSON;
 import com.github.jsonzou.jmockdata.MockConfig;
-import com.tojaoomy.payment.app.MainApplication;
-import com.tojaoomy.payment.dataobject.OrderComplaintFlowMappingDO;
-import com.tojaoomy.payment.dataobject.OrderDO;
 import com.tojaoomy.payment.dataobject.ShardingUserDO;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.apache.commons.lang3.RandomUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,19 +18,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
-
 /**
  * @author 玉书
  * @date 2021/1/26
  */
 @SpringBootTest
-//@ActiveProfiles("test")
-//@Sql(scripts = "/h2_sql/delete.sql")
+@ActiveProfiles("dev")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { TestDataSourceConfig.class, TestMybatisPlusConfiguration.class })
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class }, scanBasePackages = {"com.tojaoomy.payment"})
-public class ApplicationTest {
+public class ProfileDevApplicationTest {
 
     private static MockConfig mockConfig = new MockConfig()
             // 全局配置
@@ -43,22 +36,12 @@ public class ApplicationTest {
     @Test
     @Ignore
     public void accountExistsTest() {
-//        println(accountService.registerAccount(JMockData.mock(RegisterAccountRequest.class)));
     }
 
     @Test
-    @Sql(statements = "insert into t_order_complaint_flow_mapping (id, deleted, flow_id, flow_detail_id, is_active_flow, flow_status) values  (10, 0, 0, 0, 0, 'init');")
+    @Sql(statements = "insert into t_order_complaint_flow_mapping (deleted, flow_id, flow_detail_id, is_active_flow, flow_status) values  (0, 0, 0, 0, 'init');")
     public void testSqlInsert() {
 
-    }
-
-    /**
-     * 测试乐观锁
-     */
-    @Test
-    public void testVersion() {
-        OrderDO orderDO = new OrderDO();
-        orderDO.selectById(1).setOrderId("1234").updateById();
     }
 
     @Test
@@ -68,18 +51,6 @@ public class ApplicationTest {
             shardingUserDO.setUserId("1" + RandomUtils.nextInt(0, 10) + RandomUtils.nextInt(0, 10) + i);
             shardingUserDO.insert();
         }
-    }
-
-    @Test
-    public void configMapper_selectByExample() {
-        OrderComplaintFlowMappingDO orderComplaintFlowMappingDO = new OrderComplaintFlowMappingDO();
-        printJSON(orderComplaintFlowMappingDO.selectAll());
-        orderComplaintFlowMappingDO.setFlowId(1L);
-        orderComplaintFlowMappingDO.insert();
-        printJSON(orderComplaintFlowMappingDO.selectById(orderComplaintFlowMappingDO.getId()));
-
-        orderComplaintFlowMappingDO.setFlowStatus("approved").updateById();
-        printJSON(orderComplaintFlowMappingDO.selectById(orderComplaintFlowMappingDO.getId()));
     }
 
     private static void printJSON(Object object) {
