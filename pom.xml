@@ -8,10 +8,19 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.6.1</version>
     </parent>
-    <groupId>org.example</groupId>
+    <groupId>org.tojaoomy</groupId>
     <artifactId>MybatisPlusDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
+    <modules>
+        <module>mybatis-plus-api</module>
+        <module>mybatis-plus-application</module>
+        <module>mybatis-plus-domain</module>
+        <module>mybatis-plus-infrastructure</module>
+        <module>mybatis-plus-starter</module>
+
+    </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
