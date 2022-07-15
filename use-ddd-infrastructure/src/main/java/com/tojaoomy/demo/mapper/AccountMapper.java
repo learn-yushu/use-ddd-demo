@@ -1,7 +1,7 @@
-package com.demo.service.dao;
+package com.tojaoomy.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tojaoomy.demo.dataobject.AccountEntity;
+import com.tojaoomy.demo.dataobject.AccountDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2021-12-25
  */
 @Mapper
-public interface AccountMapper extends BaseMapper<AccountEntity> {
+public interface AccountMapper extends BaseMapper<AccountDO> {
 
 }

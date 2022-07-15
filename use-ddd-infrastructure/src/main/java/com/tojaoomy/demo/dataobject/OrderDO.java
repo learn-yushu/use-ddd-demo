@@ -13,6 +13,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -26,8 +27,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("t_account")
-public class AccountEntity extends Model<AccountEntity> {
+@TableName("t_order")
+public class OrderDO extends Model<OrderDO> {
 
     private static final long serialVersionUID = 1L;
 
@@ -56,8 +57,8 @@ public class AccountEntity extends Model<AccountEntity> {
     @TableLogic
     private Integer deleted;
 
-    @TableField("userName")
-    private String userName;
+    @TableField("productName")
+    private String productName;
 
     @TableField("mobileNumber")
     private String mobileNumber;
@@ -65,11 +66,14 @@ public class AccountEntity extends Model<AccountEntity> {
     @TableField("address")
     private String address;
 
-    @TableField("email")
-    private String email;
+    @TableField("price")
+    private BigDecimal price;
 
-    @TableField("age")
-    private String age;
+    @TableField("count")
+    private Long count;
+
+    @TableField("userId")
+    private Long userId;
 
     /**
      * 是否开启工作流

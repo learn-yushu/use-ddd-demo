@@ -3,11 +3,13 @@ package com.demo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.demo.dto.CreateOrderRequest;
 import com.demo.service.OrderService;
-import com.demo.service.dao.AccountMapper;
-import com.demo.service.dao.OrderMapper;
-import com.demo.service.remote.RiskService;
-import com.demo.service.remote.dto.RiskRequest;
-import com.demo.service.remote.dto.RiskResponse;
+import com.tojaoomy.demo.dataobject.AccountDO;
+import com.tojaoomy.demo.dataobject.OrderDO;
+import com.tojaoomy.demo.mapper.AccountMapper;
+import com.tojaoomy.demo.mapper.OrderMapper;
+import com.tojaoomy.demo.remote.risk.api.RiskService;
+import com.tojaoomy.demo.remote.risk.api.RiskRequest;
+import com.tojaoomy.demo.remote.risk.api.RiskResponse;
 import com.demo.service.utils.MobileUtils;
 import com.demo.service.utils.OrderUtils;
 import com.demo.vo.AccountVO;
@@ -42,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
             return false;
         }
 
-        OrderEntity entity = new OrderEntity();
+        OrderDO entity = new OrderDO();
         BeanUtils.copyProperties(orderDto, entity);
         orderMapper.insert(entity);
         return true;
@@ -54,22 +56,21 @@ public class OrderServiceImpl implements OrderService {
         if(riskResponse.getRisk_level() < 6 && riskResponse.getRisk_score() < 88.8 && riskResponse.getRisk_suggest() != null) {
             return null;
         }
-        LambdaQueryWrapper<OrderEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(OrderEntity::getId, orderId);
+        LambdaQueryWrapper<OrderDO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(OrderDO::getId, orderId);
         Long count = orderMapper.selectCount(queryWrapper);
         if(count > 0) {
             OrderVO orderVO = new OrderVO();
-            OrderEntity entity = orderMapper.selectOne(queryWrapper);
+            OrderDO entity = orderMapper.selectOne(queryWrapper);
             BeanUtils.copyProperties(entity, orderVO);
 
             //
-            LambdaQueryWrapper<AccountEntity> accountWrapper = new LambdaQueryWrapper<>();
-            accountWrapper.eq(AccountEntity::getId, entity.getUserId());
+            LambdaQueryWrapper<AccountDO> accountWrapper = new LambdaQueryWrapper<>();
+            accountWrapper.eq(AccountDO::getId, entity.getUserId());
             Long userCount = accountMapper.selectCount(accountWrapper);
             if(userCount > 0) {
-                AccountVO accountVO = new AccountVO();
-                AccountEntity accountEntity = accountMapper.selectOne(accountWrapper);
-                orderVO.setUserName(accountEntity.getUserName());
+                AccountDO AccountDO = accountMapper.selectOne(accountWrapper);
+                orderVO.setUserName(AccountDO.getUserName());
             }
         }
         return null;

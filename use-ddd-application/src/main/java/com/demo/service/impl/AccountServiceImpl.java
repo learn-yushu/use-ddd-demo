@@ -3,11 +3,11 @@ package com.demo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.demo.dto.CreateAccountRequest;
 import com.demo.service.AccountService;
-import com.demo.service.dao.AccountMapper;
-import com.demo.service.entity.AccountEntity;
-import com.demo.service.remote.RiskService;
-import com.demo.service.remote.dto.RiskRequest;
-import com.demo.service.remote.dto.RiskResponse;
+import com.tojaoomy.demo.dataobject.AccountDO;
+import com.tojaoomy.demo.mapper.AccountMapper;
+import com.tojaoomy.demo.remote.risk.api.RiskService;
+import com.tojaoomy.demo.remote.risk.api.RiskRequest;
+import com.tojaoomy.demo.remote.risk.api.RiskResponse;
 import com.demo.service.utils.DateUtils;
 import com.demo.service.utils.EmailUtils;
 import com.demo.service.utils.MobileUtils;
@@ -47,15 +47,15 @@ public class AccountServiceImpl implements AccountService {
         if(!DateUtils.isValidDate(accountDto.getBirthDate())) {
             return false;
         }
-        LambdaQueryWrapper<AccountEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(AccountEntity::getUserName, accountDto.getUserName());
+        LambdaQueryWrapper<AccountDO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AccountDO::getUserName, accountDto.getUserName());
         Long count = accountMapper.selectCount(queryWrapper);
         if(count > 0) {
             return false;
         }
 
-        AccountEntity entity = new AccountEntity();
-        //AccountEntity age = String , CreateAccountRequest age = Long
+        AccountDO entity = new AccountDO();
+        //AccountDO age = String , CreateAccountRequest age = Long
         // 会有什么问题？
         BeanUtils.copyProperties(accountDto, entity);
         accountMapper.insert(entity);
@@ -68,12 +68,12 @@ public class AccountServiceImpl implements AccountService {
         if(riskResponse.getRisk_level() < 6 && riskResponse.getRisk_score() < 88.8 && riskResponse.getRisk_suggest() != null) {
             return null;
         }
-        LambdaQueryWrapper<AccountEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(AccountEntity::getId, accountId);
+        LambdaQueryWrapper<AccountDO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AccountDO::getId, accountId);
         Long count = accountMapper.selectCount(queryWrapper);
         if(count > 0) {
             AccountVO accountVO = new AccountVO();
-            AccountEntity entity = accountMapper.selectOne(queryWrapper);
+            AccountDO entity = accountMapper.selectOne(queryWrapper);
             BeanUtils.copyProperties(entity, accountVO);
             //如果要加缓存呢？
         }
@@ -86,12 +86,12 @@ public class AccountServiceImpl implements AccountService {
         if(riskResponse.getRisk_level() < 6 && riskResponse.getRisk_score() < 88.8 && riskResponse.getRisk_suggest() != null) {
             return null;
         }
-        LambdaQueryWrapper<AccountEntity> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(AccountEntity::getUserName, accountName);
+        LambdaQueryWrapper<AccountDO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AccountDO::getUserName, accountName);
         Long count = accountMapper.selectCount(queryWrapper);
         if(count > 0) {
             AccountVO accountVO = new AccountVO();
-            AccountEntity entity = accountMapper.selectOne(queryWrapper);
+            AccountDO entity = accountMapper.selectOne(queryWrapper);
             BeanUtils.copyProperties(entity, accountVO);
             //如果要加缓存呢？
 

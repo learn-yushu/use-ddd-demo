@@ -1,7 +1,7 @@
-package com.demo.service.dao;
+package com.tojaoomy.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tojaoomy.demo.dataobject.OrderEntity;
+import com.tojaoomy.demo.dataobject.OrderDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2021-12-25
  */
 @Mapper
-public interface OrderMapper extends BaseMapper<OrderEntity> {
+public interface OrderMapper extends BaseMapper<OrderDO> {
 
 }

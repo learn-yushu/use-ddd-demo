@@ -1,7 +1,8 @@
-package com.demo.service.remote;
+package com.tojaoomy.demo.remote.risk.facade;
 
-import com.demo.service.remote.dto.RiskRequest;
-import com.demo.service.remote.dto.RiskResponse;
+import com.tojaoomy.demo.remote.risk.api.RiskRequest;
+import com.tojaoomy.demo.remote.risk.api.RiskResponse;
+import com.tojaoomy.demo.remote.risk.api.RiskService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
  * @date 2022/7/15
  */
 @Service
-public class RiskServiceImpl implements RiskService {
+public class RiskServiceFacade implements RiskService {
 
     private RestTemplate restTemplate;
 

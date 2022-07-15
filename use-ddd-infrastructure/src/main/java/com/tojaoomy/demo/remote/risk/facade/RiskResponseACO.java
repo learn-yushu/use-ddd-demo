@@ -1,4 +1,4 @@
-package com.demo.service.remote.dto;
+package com.tojaoomy.demo.remote.risk.facade;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import lombok.Data;
  * @date 2022/7/15
  */
 @Data
-public class RiskResponse {
+public class RiskResponseACO {
 
     private String code;
 
@@ -16,13 +16,13 @@ public class RiskResponse {
     /**
      * 风控等级
      */
-    private long risk_level;
+    private long riskLevel;
 
     /**
      * 建议
      */
-    private String risk_suggest;
+    private String riskSuggest;
 
-    private Double risk_score;
+    private Double riskScore;
 
 }
