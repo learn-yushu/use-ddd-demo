@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>mybatis-plus-api</module>
-        <module>mybatis-plus-application</module>
-        <module>mybatis-plus-domain</module>
-        <module>mybatis-plus-infrastructure</module>
-        <module>mybatis-plus-starter</module>
+        <module>use-ddd-api</module>
+        <module>use-ddd-application</module>
+        <module>use-ddd-domain</module>
+        <module>use-ddd-infrastructure</module>
+        <module>use-ddd-starter</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -17,9 +17,9 @@
         <relativePath/>
     </parent>
     <groupId>org.tojaoomy</groupId>
-    <artifactId>mybatis-plus-demo</artifactId>
+    <artifactId>use-ddd-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Mybatis-Plus</name>
+    <name>use-ddd</name>
     <packaging>pom</packaging>
 
     <properties>
