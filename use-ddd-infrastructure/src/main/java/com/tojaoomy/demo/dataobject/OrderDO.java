@@ -28,7 +28,8 @@ import java.time.LocalDateTime;
 @Setter
 @Accessors(chain = true)
 @TableName("t_order")
-public class OrderDO extends Model<OrderDO> {
+public
+class OrderDO extends Model<OrderDO> {
 
     private static final long serialVersionUID = 1L;
 

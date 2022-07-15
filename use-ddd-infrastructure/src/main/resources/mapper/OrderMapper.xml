@@ -3,7 +3,7 @@
 <mapper namespace="com.tojaoomy.demo.mapper.OrderMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.tojaoomy.demo.dataobject.OrderDO">
+    <resultMap id="BaseResultMap" type="com.tojaoomy.demo.dataobject.AccoiuntDO">
         <id column="id" property="id" />
         <result column="ctime" property="ctime" />
         <result column="mtime" property="mtime" />

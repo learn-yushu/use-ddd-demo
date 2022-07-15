@@ -1,6 +1,6 @@
-package com.demo.service.impl;
+package com.tojaoomy.demo.cache.facade;
 
-import com.demo.service.CacheService;
+import com.tojaoomy.demo.cache.api.CacheService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @date 2022/7/15
  */
 @Service
-public class CacheServiceImpl implements CacheService {
+public class CacheServiceFacade implements CacheService {
 
     @Override
     public String get(String key) {

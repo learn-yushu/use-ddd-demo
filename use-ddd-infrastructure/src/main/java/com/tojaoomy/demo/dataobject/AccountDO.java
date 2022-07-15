@@ -27,7 +27,7 @@ import java.time.LocalDateTime;
 @Setter
 @Accessors(chain = true)
 @TableName("t_account")
-public class AccountDO extends Model<AccountDO> {
+public class AccountDO extends Model<OrderDO> {
 
     private static final long serialVersionUID = 1L;
 

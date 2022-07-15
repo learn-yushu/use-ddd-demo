@@ -1,12 +1,14 @@
 package com.tojaoomy.demo.remote.risk.facade;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author 玉书
  * @date 2022/7/15
  */
 @Data
+@Accessors(chain = true)
 public class RiskResponseACO {
 
     private String code;

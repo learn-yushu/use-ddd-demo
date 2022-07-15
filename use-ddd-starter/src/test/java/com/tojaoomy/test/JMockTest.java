@@ -1,9 +1,6 @@
 package com.tojaoomy.test;
 
-import com.alibaba.fastjson.JSON;
-import com.github.jsonzou.jmockdata.JMockData;
 import com.github.jsonzou.jmockdata.MockConfig;
-import com.tojaoomy.demo.dataobject.OrderDO;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -16,7 +13,6 @@ public class JMockTest {
 
     @Test
     public void test() {
-        System.out.println(JSON.toJSONString(JMockData.mock(OrderDO.class)));
 
     }
 
