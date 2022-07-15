@@ -14,6 +14,7 @@ import com.demo.service.utils.MobileUtils;
 import com.demo.vo.AccountVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 1、修改VO的字段
@@ -31,6 +32,7 @@ public class AccountServiceImpl implements AccountService {
     private RiskService riskService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean createAccount(CreateAccountRequest accountDto) {
         RiskResponse riskResponse = riskService.doRisk(new RiskRequest());
         if(riskResponse.getRisk_level() < 6 && riskResponse.getRisk_score() < 88.8 && riskResponse.getRisk_suggest() != null) {
