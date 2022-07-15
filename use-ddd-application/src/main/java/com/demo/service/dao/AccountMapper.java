@@ -1,7 +1,7 @@
 package com.demo.service.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tojaoomy.demo.dataobject.AccountEntity;
+import com.demo.service.entity.AccountEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

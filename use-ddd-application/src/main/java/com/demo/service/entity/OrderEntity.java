@@ -1,4 +1,4 @@
-package com.tojaoomy.demo.dataobject;
+package com.demo.service.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
